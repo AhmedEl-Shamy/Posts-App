@@ -12,7 +12,7 @@ abstract class PostRemoteDataSource {
 }
 
 class PostRemoteDataSourceImpl implements PostRemoteDataSource {
-  APIService apiService;
+  final APIService apiService;
   PostRemoteDataSourceImpl({required this.apiService});
 
   @override
