@@ -18,10 +18,9 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
   @override
   Future<List<PostModel>> getAllPosts() async {
     final postsJson = await apiService.get(endPoint: 'posts');
-    List<PostModel> postModels =
-        (json.decode(postsJson) as List<Map<String, dynamic>>)
-            .map((e) => PostModel.fromJson(e))
-            .toList();
+    List<PostModel> postModels = (json.decode(postsJson) as List)
+        .map((e) => PostModel.fromJson(e))
+        .toList();
     return postModels;
   }
 

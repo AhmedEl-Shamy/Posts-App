@@ -62,11 +62,4 @@ class EditPostCubit extends Cubit<EditPostState> {
       emit(EditPostAdded());
     });
   }
-
-  void _navigateToHome(BuildContext context) async {
-    Future.delayed(
-      const Duration(seconds: 1),
-      () => Navigator.of(context).pop(),
-    );
-  }
 }
