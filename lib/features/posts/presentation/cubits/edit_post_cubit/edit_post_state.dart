@@ -16,4 +16,8 @@ final class EditPostFailure extends EditPostState {
   final Failure failure;
   const EditPostFailure ({required this.failure});
 }
+final class EditPostInputsFailure extends EditPostState {
+  final Failure failure;
+  const EditPostInputsFailure ({required this.failure});
+}
 

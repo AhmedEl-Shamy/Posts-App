@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -24,7 +25,6 @@ class EditPostCubit extends Cubit<EditPostState> {
   final AddPosts _addPosts;
   final DeletePost _deletePost;
   final UpdatePost _updatePost;
-
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
 
@@ -35,12 +35,17 @@ class EditPostCubit extends Cubit<EditPostState> {
       body: bodyController.text,
     );
     emit(EditPostLoading());
-    Either<Failure, bool> either = await _addPosts(post);
-    either.fold(onLeft: (failure) {
-      emit(EditPostFailure(failure: failure));
-    }, onRight: (value) {
-      emit(EditPostAdded());
-    });
+    if (_validateInputs()) {
+      Either<Failure, bool> either = await _addPosts(post);
+      either.fold(onLeft: (failure) {
+        emit(EditPostFailure(failure: failure));
+      }, onRight: (value) {
+        emit(EditPostAdded());
+      });
+    }else{
+      String inputFieldName = (titleController.text.isEmpty)? 'Title' : 'Body'; 
+      emit(EditPostInputsFailure(failure: Failure.emptyInputsFailure(inputFieldName)));
+    }
   }
 
   void deletePost(Post post) async {
@@ -61,5 +66,9 @@ class EditPostCubit extends Cubit<EditPostState> {
     }, onRight: (value) {
       emit(EditPostAdded());
     });
+  }
+
+  bool _validateInputs() {
+    return titleController.text.isNotEmpty && bodyController.text.isNotEmpty;
   }
 }

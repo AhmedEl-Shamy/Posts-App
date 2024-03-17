@@ -25,7 +25,7 @@ class PostLocalDataSourceImpl implements PostLocalDataSource {
     String? cachedPosts = sharedPreferences.getString('cached_posts');
     if (cachedPosts != null) {
       List<PostModel> posts =
-          (json.decode(cachedPosts) as List<Map<String, dynamic>>)
+          (json.decode(cachedPosts) as List< dynamic>)
               .map((e) => PostModel.fromJson(e))
               .toList();
       return Future<List<PostModel>>.value(posts);

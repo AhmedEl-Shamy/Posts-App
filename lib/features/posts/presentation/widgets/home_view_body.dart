@@ -8,23 +8,14 @@ class HomeViewBody extends StatelessWidget {
   final List<Post> posts;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxWidth: MediaQuery.of(context).size.width - 40,
-        ),
-        child: ListView.separated(
-          shrinkWrap: true,
-          itemBuilder: (context, index) => Dismissible(
-              key: Key(posts[index].id.toString()),
-              child: PostsListViewItem(post: posts[index])),
-          separatorBuilder: (context, index) => const SizedBox(
-            height: 20,
-          ),
-          itemCount: posts.length,
-        ),
-      ),
+    return ListView.builder(
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+
+      shrinkWrap: true,
+      itemBuilder: (context, index) => Dismissible(
+          key: Key(posts[index].id.toString()),
+          child: PostsListViewItem(post: posts[index])),
+      itemCount: posts.length,
     );
   }
 }

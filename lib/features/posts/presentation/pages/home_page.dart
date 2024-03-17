@@ -15,7 +15,9 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed('/addPost');
+        },
         child: const Icon(Icons.add),
       ),
       appBar: AppBar(
