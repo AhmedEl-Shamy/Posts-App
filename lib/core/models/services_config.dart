@@ -9,6 +9,7 @@ import 'package:posts_app/features/posts/domain/usecases/add_post.dart';
 import 'package:posts_app/features/posts/domain/usecases/delete_post.dart';
 import 'package:posts_app/features/posts/domain/usecases/get_all_posts.dart';
 import 'package:posts_app/features/posts/domain/usecases/update_post.dart';
+import 'package:posts_app/features/posts/presentation/cubits/edit_post_cubit/edit_post_cubit.dart';
 import 'package:posts_app/features/posts/presentation/cubits/posts_cubit/posts_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart';
@@ -30,10 +31,12 @@ class ServicesConfig {
     // data Sources
     sharedPreferences = await SharedPreferences.getInstance();
     apiService = APIServiceImpl(client: Client());
-    postLocalDataSourceImpl = PostLocalDataSourceImpl(sharedPreferences: sharedPreferences);
+    postLocalDataSourceImpl =
+        PostLocalDataSourceImpl(sharedPreferences: sharedPreferences);
     postRemoteDataSource = PostRemoteDataSourceImpl(apiService: apiService);
-    internetCheckerService = InternetCheckerServiceImpl(InternetConnectionChecker());
-    
+    internetCheckerService =
+        InternetCheckerServiceImpl(InternetConnectionChecker());
+
     // Repos
     postsRepo = PostsRepoImpl(
       postRemoteDataSource: postRemoteDataSource,
@@ -53,6 +56,14 @@ class ServicesConfig {
       updatePost: updatePost,
       addPosts: addPosts,
       deletePost: deletePost,
+    );
+  }
+
+  static EditPostCubit editPostCubitInstance() {
+    return EditPostCubit(
+      addPosts: addPosts,
+      deletePost: deletePost,
+      updatePost: updatePost,
     );
   }
 }

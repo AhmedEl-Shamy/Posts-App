@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:posts_app/core/models/services_config.dart';
+import 'package:posts_app/features/posts/presentation/cubits/edit_post_cubit/edit_post_cubit.dart';
 import 'package:posts_app/features/posts/presentation/pages/add_post_page.dart';
+import 'package:posts_app/features/posts/presentation/pages/post_details_page.dart';
+import 'package:posts_app/features/posts/presentation/widgets/post_details_body.dart';
 
 import 'features/posts/presentation/pages/home_page.dart';
 
@@ -19,11 +22,17 @@ class PostsApp extends StatelessWidget {
     return MaterialApp(
       title: 'Posts App',
       routes: {
-        '/addPost' :(context) => const AddPostPage(),
+        '/addPost': (context) => BlocProvider(
+              create: (context) => ServicesConfig.editPostCubitInstance(),
+              child: const AddPostPage(),
+            ),
+        '/postDetails': (context) => BlocProvider(
+              create: (context) => ServicesConfig.editPostCubitInstance(),
+              child: const PostDetailsPage(),
+            ),
       },
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)
-      ),
+      theme:
+          ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
       home: BlocProvider(
         create: (context) => ServicesConfig.postsCubit..getPosts(),
         child: const HomePage(),

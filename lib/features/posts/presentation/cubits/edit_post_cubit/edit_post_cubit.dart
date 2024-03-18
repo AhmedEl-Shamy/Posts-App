@@ -45,10 +45,6 @@ class EditPostCubit extends Cubit<EditPostState> {
         emit(EditPostAdded());
       });
     }
-    // else{
-    //   String inputFieldName = (titleController.text.isEmpty)? 'Title' : 'Body'; 
-    //   emit(EditPostInputsFailure(failure: Failure.emptyInputsFailure(inputFieldName)));
-    // }
   }
 
   void deletePost(Post post) async {
@@ -73,5 +69,11 @@ class EditPostCubit extends Cubit<EditPostState> {
 
   bool _validateInputs() {
     return formKey.currentState?.validate() ?? false;
+  }
+
+  void setDataToForm(Post post) {
+    titleController.text = post.title;
+    bodyController.text = post.body;
+    emit(UpdateForm());
   }
 }

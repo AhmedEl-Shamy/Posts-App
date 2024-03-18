@@ -10,6 +10,7 @@ sealed class EditPostState extends Equatable {
 final class EditPostInitial extends EditPostState {}
 final class EditPostLoading extends EditPostState {}
 final class EditPostAdded extends EditPostState {}
+final class UpdateForm extends EditPostState {}
 final class EditPostUpdated extends EditPostState {}
 final class EditPostDeleted extends EditPostState {}
 final class EditPostFailure extends EditPostState {

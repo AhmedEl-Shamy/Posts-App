@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:posts_app/core/widgets/error_widget.dart';
 import 'package:posts_app/core/widgets/loading_widget.dart';
+import 'package:posts_app/features/posts/presentation/widgets/custom_appbar.dart';
 import 'package:posts_app/features/posts/presentation/widgets/home_view_body.dart';
 
 import '../cubits/posts_cubit/posts_cubit.dart';
@@ -20,12 +21,7 @@ class HomePage extends StatelessWidget {
         },
         child: const Icon(Icons.add),
       ),
-      appBar: AppBar(
-        title: const Text('Posts'),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-      ),
+      appBar: CustomAppBar.getAppBar(title: 'Posts', context: context),
       body: BlocBuilder<PostsCubit, PostsState>(
         builder: (context, state) {
           if (state is PostsSuccess) {

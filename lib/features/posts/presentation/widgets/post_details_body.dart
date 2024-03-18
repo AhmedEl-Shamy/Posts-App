@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:posts_app/features/posts/presentation/cubits/edit_post_cubit/edit_post_cubit.dart';
 
 import '../../../../core/widgets/loading_widget.dart';
+import '../../domain/entities/post.dart';
+import '../cubits/edit_post_cubit/edit_post_cubit.dart';
 import 'edit_post_form_widget.dart';
 
-class AddPostBody extends StatelessWidget {
-  const AddPostBody({super.key});
-
+class PostDetailsBody extends StatelessWidget {
+  const PostDetailsBody({super.key, required this.post});
+  final Post post;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,8 +20,8 @@ class AddPostBody extends StatelessWidget {
             return const CustomLoadingWidget();
           } else {
             return EditPostForm(
-              submitButtonText: 'Add Post',
-              submitFunction: BlocProvider.of<EditPostCubit>(context).addPost,
+              submitButtonText: 'Update Post',
+              submitFunction: () => BlocProvider.of<EditPostCubit>(context).updatePost(post),
             );
           }
         },
@@ -45,17 +46,14 @@ class AddPostBody extends StatelessWidget {
       await showDialog(
         context: context,
         builder: (ctx) => _getMessage(
-          title: 'Post Added',
-          msg: 'Post is Added Successfuly!',
+          title: 'Post Updated',
+          msg: 'Post is updated Successfuly!',
           context: context,
           onPressed: () {
             Navigator.of(ctx).pop();
           },
         ),
       );
-      if (context.mounted) {
-        Navigator.of(context).pop();
-      }
     }
   }
 
