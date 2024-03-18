@@ -27,6 +27,7 @@ class EditPostCubit extends Cubit<EditPostState> {
   final UpdatePost _updatePost;
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   void addPost() async {
     final Post post = Post(
@@ -34,18 +35,20 @@ class EditPostCubit extends Cubit<EditPostState> {
       title: titleController.text,
       body: bodyController.text,
     );
-    emit(EditPostLoading());
+    
     if (_validateInputs()) {
+      emit(EditPostLoading());
       Either<Failure, bool> either = await _addPosts(post);
       either.fold(onLeft: (failure) {
         emit(EditPostFailure(failure: failure));
       }, onRight: (value) {
         emit(EditPostAdded());
       });
-    }else{
-      String inputFieldName = (titleController.text.isEmpty)? 'Title' : 'Body'; 
-      emit(EditPostInputsFailure(failure: Failure.emptyInputsFailure(inputFieldName)));
     }
+    // else{
+    //   String inputFieldName = (titleController.text.isEmpty)? 'Title' : 'Body'; 
+    //   emit(EditPostInputsFailure(failure: Failure.emptyInputsFailure(inputFieldName)));
+    // }
   }
 
   void deletePost(Post post) async {
@@ -69,6 +72,6 @@ class EditPostCubit extends Cubit<EditPostState> {
   }
 
   bool _validateInputs() {
-    return titleController.text.isNotEmpty && bodyController.text.isNotEmpty;
+    return formKey.currentState?.validate() ?? false;
   }
 }

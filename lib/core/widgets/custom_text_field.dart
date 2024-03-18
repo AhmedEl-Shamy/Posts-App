@@ -6,20 +6,19 @@ class CustomTextField extends StatelessWidget {
     required this.label,
     required this.isRequired,
     required this.maxLines,
-    this.errorText,
     super.key,
   });
   final TextEditingController controller;
   final String label;
   final bool isRequired;
   final int maxLines;
-  final String? errorText;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: controller,
       keyboardType: TextInputType.multiline,
       maxLines: maxLines,
+      validator: (value) => (value!.isEmpty)? '$label is required' : null,
       decoration: InputDecoration(
         hintText: 'Enter Post $label',
         label: Text.rich(
@@ -44,7 +43,6 @@ class CustomTextField extends StatelessWidget {
         border: _createBorder(context, false),
         enabledBorder: _createBorder(context, false),
         errorBorder: _createBorder(context, true),
-        errorText: errorText,
       ),
     );
   }

@@ -15,17 +15,16 @@ class AddPostBody extends StatelessWidget {
       child: BlocConsumer<EditPostCubit, EditPostState>(
         listener: _listeningMethod,
         builder: (context, state) {
-          String? errorText;
-          if (state is EditPostInputsFailure) {
-            errorText = state.failure.msg;
-          }
+          // String? errorText;
+          // if (state is EditPostInputsFailure) {
+          //   errorText = state.failure.msg;
+          // }
           if (state is EditPostLoading) {
             return const CustomLoadingWidget();
           } else {
             return EditPostForm(
               submitButtonText: 'Add Post',
               submitFunction: BlocProvider.of<EditPostCubit>(context).addPost,
-              errorText: errorText,
             );
           }
         },

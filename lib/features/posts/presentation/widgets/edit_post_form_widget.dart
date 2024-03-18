@@ -10,41 +10,40 @@ class EditPostForm extends StatelessWidget {
     super.key,
     required this.submitButtonText,
     required this.submitFunction,
-    this.errorText,
   });
 
   final String submitButtonText;
   final void Function() submitFunction;
-  final String? errorText;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomTextField(
-          controller: BlocProvider.of<EditPostCubit>(context).titleController,
-          label: 'Title',
-          isRequired: true,
-          maxLines: 1,
-          errorText: errorText,
-        ),
-        const SizedBox(
-          height: 40,
-        ),
-        CustomTextField(
-          controller: BlocProvider.of<EditPostCubit>(context).bodyController,
-          label: 'Body',
-          isRequired: true,
-          maxLines: 5,
-          errorText: errorText,
-        ),
-        const SizedBox(
-          height: 40,
-        ),
-        CustomButton(
-          text: submitButtonText,
-          onPressed: submitFunction,
-        ),
-      ],
+    return Form(
+      key: BlocProvider.of<EditPostCubit>(context).formKey,
+      child: Column(
+        children: [
+          CustomTextField(
+            controller: BlocProvider.of<EditPostCubit>(context).titleController,
+            label: 'Title',
+            isRequired: true,
+            maxLines: 1,
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          CustomTextField(
+            controller: BlocProvider.of<EditPostCubit>(context).bodyController,
+            label: 'Body',
+            isRequired: true,
+            maxLines: 5,
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          CustomButton(
+            text: submitButtonText,
+            onPressed: submitFunction,
+          ),
+        ],
+      ),
     );
   }
 

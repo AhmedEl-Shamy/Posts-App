@@ -37,7 +37,7 @@ class PostsListViewItem extends StatelessWidget {
             Text(
               post.body,
               overflow: TextOverflow.ellipsis,
-              maxLines: 8,
+              maxLines: 6,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onSecondaryContainer,
               ),
