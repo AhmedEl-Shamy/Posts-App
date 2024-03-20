@@ -28,8 +28,8 @@ class AddPostBody extends StatelessWidget {
       ),
     );
   }
-  
-   void _listeningMethod(context, state) async {
+
+  void _listeningMethod(context, state) async {
     if (state is EditPostFailure) {
       ScaffoldMessenger.of(context).showSnackBar(
         CustomSnackBars.errorSnackBar(
@@ -43,6 +43,10 @@ class AddPostBody extends StatelessWidget {
           msg: 'Post is added Successfuly!',
           context: context,
         ),
+      );
+      await Future.delayed(
+        const Duration(seconds: 1),
+        () => Navigator.of(context).pop(),
       );
     }
   }
