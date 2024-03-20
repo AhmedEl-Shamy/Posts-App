@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:posts_app/core/models/exceptions.dart';
+import 'package:posts_app/core/utlis/exceptions.dart';
 import 'package:posts_app/features/posts/data/models/post_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

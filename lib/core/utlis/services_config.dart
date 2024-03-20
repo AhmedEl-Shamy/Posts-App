@@ -1,6 +1,6 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:posts_app/core/models/api_service.dart';
-import 'package:posts_app/core/models/internet_checker_service.dart';
+import 'package:posts_app/core/utlis/api_service.dart';
+import 'package:posts_app/core/utlis/internet_checker_service.dart';
 import 'package:posts_app/features/posts/data/data_sources/post_local_data_source.dart';
 import 'package:posts_app/features/posts/data/data_sources/post_remote_data_source.dart';
 import 'package:posts_app/features/posts/data/repositories/post_repo_impl.dart';
@@ -53,8 +53,6 @@ class ServicesConfig {
     // Global Cubits
     postsCubit = PostsCubit(
       getAllPosts: getAllPosts,
-      updatePost: updatePost,
-      addPosts: addPosts,
       deletePost: deletePost,
     );
   }

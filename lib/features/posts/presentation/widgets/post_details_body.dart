@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:posts_app/core/widgets/custom_snackbar.dart';
 
 import '../../../../core/widgets/loading_widget.dart';
 import '../../domain/entities/post.dart';
@@ -21,62 +22,30 @@ class PostDetailsBody extends StatelessWidget {
           } else {
             return EditPostForm(
               submitButtonText: 'Update Post',
-              submitFunction: () => BlocProvider.of<EditPostCubit>(context).updatePost(post),
+              submitFunction: () =>
+                  BlocProvider.of<EditPostCubit>(context).updatePost(post),
             );
           }
         },
       ),
     );
   }
-  
+
   void _listeningMethod(context, state) async {
     if (state is EditPostFailure) {
-      await showDialog(
-        context: context,
-        builder: (ctx) => _getMessage(
-          title: 'Error',
+      ScaffoldMessenger.of(context).showSnackBar(
+        CustomSnackBars.errorSnackBar(
           msg: state.failure.msg,
           context: context,
-          onPressed: () {
-            Navigator.of(ctx).pop();
-          },
         ),
       );
-    } else if (state is EditPostAdded) {
-      await showDialog(
-        context: context,
-        builder: (ctx) => _getMessage(
-          title: 'Post Updated',
+    } else if (state is EditPostUpdated) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        CustomSnackBars.successSnackBar(
           msg: 'Post is updated Successfuly!',
           context: context,
-          onPressed: () {
-            Navigator.of(ctx).pop();
-          },
         ),
       );
     }
-  }
-
-  AlertDialog _getMessage({
-    required String msg,
-    required String title,
-    required BuildContext context,
-    required void Function() onPressed,
-  }) {
-    return AlertDialog(
-      title: Text(
-        title,
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      content: Text(msg),
-      actions: [
-        TextButton(
-          onPressed: onPressed,
-          child: const Text('OK'),
-        ),
-      ],
-    );
   }
 }

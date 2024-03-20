@@ -1,7 +1,7 @@
-import 'package:posts_app/core/models/either.dart';
-import 'package:posts_app/core/models/exceptions.dart';
-import 'package:posts_app/core/models/failure.dart';
-import 'package:posts_app/core/models/internet_checker_service.dart';
+import 'package:posts_app/core/utlis/either.dart';
+import 'package:posts_app/core/utlis/exceptions.dart';
+import 'package:posts_app/core/utlis/failure.dart';
+import 'package:posts_app/core/utlis/internet_checker_service.dart';
 import 'package:posts_app/features/posts/data/data_sources/post_local_data_source.dart';
 import 'package:posts_app/features/posts/data/data_sources/post_remote_data_source.dart';
 import 'package:posts_app/features/posts/domain/entities/post.dart';

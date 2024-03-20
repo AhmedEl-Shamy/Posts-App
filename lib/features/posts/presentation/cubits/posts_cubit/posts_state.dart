@@ -15,6 +15,7 @@ final class PostsSuccess extends PostsState {
 }
 
 final class PostsLoading extends PostsState {}
+final class PostDeleted extends PostsState {}
 
 final class PostsFailure extends PostsState {
   final Failure failure;

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:posts_app/core/models/api_service.dart';
+import 'package:posts_app/core/utlis/api_service.dart';
 
 import '../models/post_model.dart';
 

@@ -1,6 +1,5 @@
 import 'package:http/http.dart' as http;
-
-import '../utlis/exceptions.dart';
+import 'package:posts_app/core/utlis/exceptions.dart';
 
 abstract class APIService {
   final String apiURL;

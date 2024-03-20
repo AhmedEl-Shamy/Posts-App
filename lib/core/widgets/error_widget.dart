@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/failure.dart';
+import '../utlis/failure.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   const CustomErrorWidget({required this.failure, super.key});

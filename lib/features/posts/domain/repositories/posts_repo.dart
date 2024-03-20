@@ -1,5 +1,5 @@
-import 'package:posts_app/core/models/either.dart';
-import 'package:posts_app/core/models/failure.dart';
+import 'package:posts_app/core/utlis/either.dart';
+import 'package:posts_app/core/utlis/failure.dart';
 import 'package:posts_app/features/posts/domain/entities/post.dart';
 
 abstract class PostsRepo {

@@ -11,11 +11,14 @@ class PostsListViewItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: GestureDetector(
-        onTap: () => Navigator.of(context).pushNamed('/postDetails', arguments: post),
+        onTap: () =>
+            Navigator.of(context).pushNamed('/postDetails', arguments: post),
         child: Container(
           decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(10)),
+            color: Theme.of(context).colorScheme.primaryContainer,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          width: double.infinity,
           constraints: const BoxConstraints(
             maxHeight: 200,
           ),

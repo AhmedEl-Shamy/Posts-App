@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:posts_app/core/models/services_config.dart';
+import 'package:posts_app/core/utlis/services_config.dart';
 import 'package:posts_app/features/posts/presentation/pages/add_post_page.dart';
 import 'package:posts_app/features/posts/presentation/pages/post_details_page.dart';
 

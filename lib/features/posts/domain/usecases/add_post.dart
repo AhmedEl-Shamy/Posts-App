@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:posts_app/features/posts/domain/repositories/posts_repo.dart';
 
-import '../../../../core/models/either.dart';
-import '../../../../core/models/failure.dart';
+import '../../../../core/utlis/either.dart';
+import '../../../../core/utlis/failure.dart';
 import '../entities/post.dart';
 
 class AddPosts extends Equatable {
